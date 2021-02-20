@@ -17,6 +17,8 @@
 package com.kakyiretechnologies.appreview
 
 import android.app.Activity
+import android.os.Build
+import android.os.Build.VERSION
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -83,26 +85,29 @@ private fun appReviewConfiguration(view: Activity) {
     val manager = ReviewManagerFactory.create(view.applicationContext)
 
 
-    manager.requestReviewFlow()
-        .addOnCompleteListener { request ->
-            if (request.isSuccessful) {
-                val reviewInfo = request.result
+    //In-App review only works on Android 5.0 (API level 21)
+    if (VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        manager.requestReviewFlow()
+                .addOnCompleteListener { request ->
+                    if (request.isSuccessful) {
+                        val reviewInfo = request.result
 
-                manager.launchReviewFlow(view, reviewInfo)
-                    .apply {
+                        manager.launchReviewFlow(view, reviewInfo)
+                                .apply {
 
-                        addOnCompleteListener {
-                            Log.d(TAG, "Review complete: $it")
-                        }
+                                    addOnCompleteListener {
+                                        Log.d(TAG, "Review complete: $it")
+                                    }
 
-                        addOnFailureListener {
-                            Log.d(TAG, "Review failure: $it")
-                        }
+                                    addOnFailureListener {
+                                        Log.d(TAG, "Review failure: $it")
+                                    }
+                                }
+                    } else {
+                        Log.d(TAG, "Request error: ${request.exception} ")
                     }
-            } else {
-                Log.d(TAG, "Request error: ${request.exception} ")
-            }
-        }
+                }
+    }
 }
 
 

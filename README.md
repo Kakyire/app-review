@@ -1,7 +1,7 @@
 # App-Review
 This library lets you prompt users to submit Play Store ratings and reviews without the inconvenience of leaving your app or game.
 
-![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)
+![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)
 [![](https://jitpack.io/v/Kakyire/app-review.svg)](https://jitpack.io/#Kakyire/app-review)
 
 
