@@ -34,7 +34,7 @@ Add the dependency to your app level `build.gradle`
 
 ```gradle
 dependencies {
-	implementation 'com.github.kakyire:in-app-review:1.0.0'
+	implementation 'com.github.kakyire:app-review:2.0.0'
 }
   ``` 
   
