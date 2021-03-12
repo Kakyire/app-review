@@ -25,7 +25,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.play.core.review.ReviewManagerFactory
-import com.kakyiretechnologies.appreview.PersistUserOpenTimes.Companion.TAG
 
 
 /**

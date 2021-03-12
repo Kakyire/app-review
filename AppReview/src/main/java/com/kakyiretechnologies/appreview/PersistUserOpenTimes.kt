@@ -23,7 +23,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.intPreferencesKey
-import androidx.datastore.preferences.createDataStore
+import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
@@ -36,13 +36,20 @@ import java.io.IOException
  *
  * @param context the current [Context] the app is in
  */
-internal class PersistUserOpenTimes(context: Context) {
+
+private const val DATA_STORE_NAME = "APP_REVIEW"
+private const val APP_OPENED_TIMES = "many_times_app_opened"
+const val TAG = "InAppReview"
+
+internal val Context.dataStore: DataStore<Preferences> by preferencesDataStore(DATA_STORE_NAME)
 
 
-    private val dataStore: DataStore<Preferences> = context.createDataStore(DATA_STORE_NAME)
+internal class PersistUserOpenTimes(private val context: Context) {
+
+
     private val dataStoreKey = intPreferencesKey(APP_OPENED_TIMES)
 
-    val appOpenedTimesFlow: Flow<Int> = dataStore.data
+    val appOpenedTimesFlow: Flow<Int> = context.dataStore.data
         .catch { exception ->
             if (exception is IOException) {
                 exception.printStackTrace()
@@ -58,7 +65,7 @@ internal class PersistUserOpenTimes(context: Context) {
 
     suspend fun increaseAppOpenTimes() {
 
-        dataStore.edit { storedData ->
+        context.dataStore.edit { storedData ->
             val currentValue = storedData[dataStoreKey]
                 ?: 0 //assign 0 as value when current value is null
 
@@ -68,9 +75,5 @@ internal class PersistUserOpenTimes(context: Context) {
     }
 
 
-    companion object {
-        private const val DATA_STORE_NAME = "APP_REVIEW"
-        private const val APP_OPENED_TIMES = "many_times_app_opened"
-        const val TAG = "InAppReview"
-    }
+
 }
