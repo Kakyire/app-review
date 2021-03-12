@@ -115,7 +115,7 @@ Learn more about In-app review [here](https://developer.android.com/guide/playco
 
 ## License
 ```
-Copyright 2021 Kakyire (Daniel Frimpong)
+Copyright (C) 2021 Kakyire (Daniel Frimpong)
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
