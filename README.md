@@ -16,29 +16,26 @@ This library lets you prompt users to submit Play Store ratings and reviews with
 
 
 
-## Prerequisite
 
-Add the JitPack repository to your your root `build.gradle` at the end of repositories:
-
-```gradle
-allprojects {
-	repositories {
-		...
-	maven { url 'https://jitpack.io' }
-	}
-}
-  ```
 
 ## Dependency
 Add the dependency to your app level `build.gradle`
 
+
+### Gradle Groovy DSL
 ```gradle
 dependencies {
-	implementation 'com.github.kakyire:app-review:2.0.0'
+	implementation 'io.github.kakyire:app-review:2.0.1'
 }
   ``` 
-  
-  
+
+
+### Gradle Kotlin DSL
+```kotlin
+dependencies{
+implementation("io.github.kakyire:app-review:2.0.1")
+}
+```
   
 ## Implementation
 In your `activity` or `fragment` add this single line of code

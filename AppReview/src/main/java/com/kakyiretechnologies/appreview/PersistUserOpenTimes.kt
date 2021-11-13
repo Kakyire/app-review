@@ -32,9 +32,8 @@ import java.io.IOException
 /**
  * @author Kakyire (Daniel Frimpong)
  *
- * Save and update number of times user has the app in [DataStore]
+ * Save and update number of times user has open the app in [DataStore]
  *
- * @param context the current [Context] the app is in
  */
 
 private const val DATA_STORE_NAME = "APP_REVIEW"
